@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../store/cart-Slice";
 
 import "./Product.css";
 const Product = ({ name, id, imgURL, price }) => {
+
+  const cartItems = useSelector(state => state.cart.itemList);
+
+  console.log(cartItems);
 
   const dispatch = useDispatch();
 
