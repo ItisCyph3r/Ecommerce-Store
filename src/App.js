@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./App.css";
 import Auth from "./components/Auth";
+import CartItems from "./components/CartItems";
 import Layout from "./components/Layout";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       { !isLoggedIn && <Auth />}
       { isLoggedIn && <Layout />}
+
     </div>
   );
 }
