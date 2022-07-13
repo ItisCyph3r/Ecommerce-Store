@@ -6,17 +6,13 @@ import { cartActions } from "../store/cart-Slice";
 import "./Product.css";
 const Product = ({ name, id, imgURL, price }) => {
 
-  const cartItems = useSelector(state => state.cart.itemList);
-
-  console.log(cartItems);
-
   const dispatch = useDispatch();
 
   const addToCart = () => {
     dispatch(cartActions.addToCart({
-      name: name,
-      id: id,
-      price: id
+      name,
+      id,
+      price
     }))
   }
 
