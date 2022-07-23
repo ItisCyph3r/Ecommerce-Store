@@ -1,14 +1,35 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./auth-slice";
-import cartSlice from "./cart-Slice";
-import uiSlice from "./ui-slice";
+// import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({
-    reducer: {
-        auth: authSlice.reducer,
-        cart: cartSlice.reducer,
-        ui: uiSlice.reducer
-    }
-});
+// import { reducer } from "./combineReducer";
+
+
+// const store = configureStore({
+//     reducer: reducer
+// });
+
+// export default store;
+
+
+import { configureStore } from "@reduxjs/toolkit";
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import thunk from 'redux-thunk';
+import { rootReducer } from "./combineReducer";
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: [] // items we only want persisted
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = configureStore({
+    reducer: persistedReducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    middleware: [thunk]
+})
+
+export const persistor = persistStore(store);
 
 export default store;

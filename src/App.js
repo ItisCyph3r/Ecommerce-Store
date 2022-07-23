@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Auth from "./components/Auth";
 import CartItems from "./components/CartItems";
+import Counter from "./components/counter";
 import Layout from "./components/Layout";
 import { Notification } from "./components/notification";
 import { uiActions } from "./store/ui-slice";
@@ -58,7 +59,7 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(notification)}
+      <Counter />
       { notification   && <Notification type={notification.type} message={notification.message} />}
       { !isLoggedIn && <Auth />}
       { isLoggedIn && <Layout />}
